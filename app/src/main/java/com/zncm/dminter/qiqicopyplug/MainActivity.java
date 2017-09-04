@@ -13,6 +13,5 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Xutils.tShort("service is ok ~");
         finish();
-
     }
 }
