@@ -1,0 +1,28 @@
+package com.zncm.dminter.qiqicopyplug;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Xutils.tShort("service is ok ~");
+        finish();
+
+        Button btnClearData = (Button)findViewById(R.id.btnClearData);
+        btnClearData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Xutils.clearDefault();
+
+//                DataCleanManager.cleanApplicationData(MainActivity.this,"");
+            }
+        });
+    }
+}
