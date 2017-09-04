@@ -11,18 +11,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Xutils.tShort("service is ok ~");
         finish();
-
-        Button btnClearData = (Button)findViewById(R.id.btnClearData);
-        btnClearData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Xutils.clearDefault();
-
-//                DataCleanManager.cleanApplicationData(MainActivity.this,"");
-            }
-        });
     }
 }
