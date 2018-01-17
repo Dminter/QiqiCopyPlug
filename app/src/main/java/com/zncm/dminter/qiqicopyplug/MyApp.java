@@ -28,8 +28,12 @@ public class MyApp extends Application {
             @Override
             public void onPrimaryClipChanged() {
                 String content = cb.getText().toString();
+                String pkgName = Xutils.getLastApp(ctx);
                 if (Xutils.notEmptyOrNull(content) && !content.equals(myLastClipboard)) {
-                    Xutils.sendTo(ctx, content);
+                    if (!Xutils.notEmptyOrNull(SPHelper.getFrom()) || Xutils.notEmptyOrNull(SPHelper.getFrom()) && Xutils.notEmptyOrNull(pkgName)
+                            && SPHelper.getFrom().equals(pkgName)) {
+                        Xutils.sendTo(ctx, content);
+                    }
                     myLastClipboard = content;
                 }
             }
