@@ -3,6 +3,7 @@ package com.zncm.dminter.qiqicopyplug;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.widget.EditText;
 
@@ -13,6 +14,7 @@ import com.kenumir.materialsettings.storage.StorageInterface;
 
 public class MainActivity extends MaterialSettings {
     private Activity ctx;
+    private boolean autoClose = true;
 
     @Override
     public StorageInterface initStorageInterface() {
@@ -86,6 +88,24 @@ public class MainActivity extends MaterialSettings {
                 } else {
                     Xutils.tShort("Please Install AliPay First.");
                 }
+            }
+        }));
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (autoClose) {
+                    finish();
+                }
+            }
+        }, 800);
+
+
+        addItem(new DividerItem(ctx));
+        addItem(new TextItem(ctx, "").setTitle("Stop Auto Close.").setOnclick(new TextItem.OnClickListener() {
+            public void onClick(TextItem textItem) {
+                autoClose = false;
             }
         }));
 
