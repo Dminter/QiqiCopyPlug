@@ -7,15 +7,20 @@ import android.preference.PreferenceManager;
 
 
 public class SPHelper {
-    public static int getGridColumns(Context context) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        return sp.getInt("grid_columns", 4);
+
+
+
+
+    public static String getKey(String key) {
+        return PreferenceManager.getDefaultSharedPreferences(MyApp.getInstance().ctx).getString(key, "");
     }
 
-    public static void setGridColumns(Context context, int grid_columns) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        sp.edit().putInt("grid_columns", grid_columns).commit();
+    public static void setKey(String key, String value) {
+        PreferenceManager.getDefaultSharedPreferences(MyApp.getInstance().ctx).edit().putString(key, value).commit();
     }
+
+
+
 
 
 
@@ -48,28 +53,6 @@ public class SPHelper {
 
 
 
-    public static boolean isSnowFall(Context context) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        return sp.getBoolean("is_snowfall", true);
-    }
 
-    public static void setIsSnowFall(Context context, boolean is_snowfall) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        sp.edit().putBoolean("is_snowfall", is_snowfall).commit();
-    }
-
-
-
-
-
-    public static boolean isRootMode(Context context) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        return sp.getBoolean("is_root_mode", false);
-    }
-
-    public static void setIsRootMode(Context context, boolean is_root_mode) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        sp.edit().putBoolean("is_root_mode", is_root_mode).commit();
-    }
 
 }

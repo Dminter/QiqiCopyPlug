@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/llBase"
+    android:layout_height="240dp"
+    android:padding="20dp"
+    android:background="@color/material_light_white"
+    android:orientation="vertical"
+>
+
+    <EditText
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:hint="Input"
+        android:maxLines="10" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="5"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="Save"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/addNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/add"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="Next"
+            android:textColor="@color/colorAccent" />
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

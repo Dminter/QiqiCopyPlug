@@ -4,11 +4,13 @@ import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.Toast;
 
 import java.util.List;
@@ -18,6 +20,17 @@ import java.util.List;
  */
 
 public class Xutils {
+
+    public static int sp2px(float spValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, MyApp.getInstance().ctx.getResources().getDisplayMetrics());
+    }
+
+    public static int px2dip(float pxValue) {
+        final float scale = MyApp.getInstance().ctx.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
+
     public static String getLastApp(Context context) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
@@ -39,6 +52,23 @@ public class Xutils {
         return "";
     }
 
+
+
+
+    public static synchronized ApplicationInfo getApp(Context context) {
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(
+                    context.getPackageName(), 0);
+            return packageInfo.applicationInfo;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
     /*
      *获取程序的版本号
      */
@@ -55,6 +85,18 @@ public class Xutils {
         return null;
     }
 
+
+    public static PackageInfo getAppInfo(String packname) {
+        try {
+            PackageManager pm = MyApp.getInstance().ctx.getPackageManager();
+            PackageInfo packinfo = pm.getPackageInfo(packname, 0);
+            return packinfo;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void clearDefault() {
         PackageManager pm = MyApp.getInstance().ctx.getPackageManager();
         pm.clearPackagePreferredActivities(MyApp.getInstance().ctx.getPackageName());
@@ -63,6 +105,7 @@ public class Xutils {
     public static void sendTo(Context ctx, String sendWhat) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
+        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         shareIntent.putExtra(Intent.EXTRA_TEXT, sendWhat);
         if (Xutils.notEmptyOrNull(SPHelper.getTo())) {
             shareIntent.setPackage(SPHelper.getTo());
