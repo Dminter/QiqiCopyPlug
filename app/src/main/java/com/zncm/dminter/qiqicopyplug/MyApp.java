@@ -19,8 +19,8 @@ public class MyApp extends Application {
     public Context ctx;
     ClipboardManager cb;
     private String myLastClipboard = "";
-//    public static    String host = "http://114.55.170.228:8090";
-public static     String host = "http://172.16.10.150:8090";
+    public static    String host = "http://114.55.170.228:8090";
+//public static     String host = "http://172.16.10.150:8090";
   String url;
     public static   String uuid;
 
